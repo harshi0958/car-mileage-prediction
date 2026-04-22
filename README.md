@@ -1,71 +1,134 @@
-# End-to-End Data Science: Car Mileage Prediction (Regression)
+# 🚗 Car Mileage Prediction System (End-to-End Data Science Project)
 
-Welcome to the **Car Mileage Prediction** project! In this module, you'll walk through the complete data science lifecycle—from raw data to a deployed web application.
+## 📌 Project Overview
 
-## Learning Objectives
-1. Perform Exploratory Data Analysis (EDA) on real-world car specifications.
-2. Clean data and engineer features (e.g., converting MPG to KMPL).
-3. Build and evaluate a Random Forest Regressor model using Scikit-Learn.
-4. Deploy the trained model using a full-stack Django web application with a sleek, modern, glassmorphic UI.
+This project demonstrates a complete **End-to-End Data Science Lifecycle**, from data analysis to model deployment.
+It predicts the **fuel efficiency (KMPL)** of a car based on various input features such as cylinders, horsepower, weight, etc.
+
+The project also includes a **Django Web Application** with a modern UI for real-time predictions.
+
+---
+
+## 🎯 Features
+
+* 📊 Exploratory Data Analysis (EDA)
+* 🧹 Data Cleaning & Feature Engineering
+* 🤖 Machine Learning Model (Random Forest Regressor)
+* 🌐 Django Web Application
+* 🎨 Modern Glassmorphic UI Design
+* ⚡ Real-time Mileage Prediction
+
+---
+
+## 🧠 Tech Stack
+
+* Python
+* Pandas, NumPy
+* Scikit-Learn
+* Joblib
+* Django
+* HTML, CSS
 
 ---
 
 ## 📂 Project Structure
-- `data/`: Contains the raw dataset `auto-mpg.data`.
-- `notebooks/`: Contains the Jupyter notebook `car_mileage_prediction.ipynb` where all the analysis and modeling happens.
-- `models/`: Where your exported `.joblib` ML model resides.
-- `webapp/`: The complete Django project that loads your model and provides a user interface.
-- `requirements.txt`: Python package dependencies.
-- `.gitignore`: Instructions for git properly ignore environment specifics.
+
+```
+car-mileage-prediction/
+│
+├── data/                 # Dataset (auto-mpg.data)
+├── notebooks/            # Jupyter Notebook (EDA + Training)
+├── models/               # Trained ML Model (.joblib)
+├── webapp/               # Django Web Application
+├── train_model.py        # Script to train model
+├── requirements.txt
+└── README.md
+```
 
 ---
 
-## 🚀 Phase 1: The Data Science Lifecycle
-In this phase, we analyze the data and generate our model.
+## ⚙️ How to Run the Project
 
-### 1. Setup the Environment
+### 1️⃣ Clone Repository
 
-It is best practice to run this project in a Python virtual environment. Here is how you can set it up from scratch depending on your operating system:
+```
+git clone https://github.com/harshi0958/car-mileage-prediction.git
+cd car-mileage-prediction
+```
 
-**For Windows:**
-```cmd
+### 2️⃣ Create Virtual Environment
+
+```
 python -m venv venv
 venv\Scripts\activate
-pip install -r requirements.txt
 ```
 
-**For macOS and Linux:**
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+### 3️⃣ Install Dependencies
+
+```
+pip install django pandas numpy scikit-learn joblib matplotlib seaborn
 ```
 
-*(Note: Ensure your virtual environment is activated before proceeding! Your terminal prompt will usually be prefixed with `(venv)`)*
+### 4️⃣ Run Django Server
 
-### 2. Run the Notebook
-Launch Jupyter Notebook to explore the steps.
-```bash
-jupyter notebook notebooks/car_mileage_prediction.ipynb
 ```
-Follow the cells to watch the data transform and train the `RandomForestRegressor`. Upon successful execution of the final cell, your model will be saved to `models/car_mileage_rf_model.joblib`. 
-
-> **Note:** If you want to bypass the notebook step and just quickly train the model to start the web app, you can run the provided python script instead: `python train_model.py`.
-
----
-
-## 🌐 Phase 2: Deploying with Django
-Once your model is saved, you can deploy it through the sleek Web Application built with Django.
-
-### 1. Run the Django Server
-Navigate into the `webapp` folder, make sure your virtual environment is still active, and start the python server.
-```bash
 cd webapp
 python manage.py runserver
 ```
 
-### 2. View the App
-Open your web browser and go to:
-[http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+### 5️⃣ Open in Browser
 
-Enter any vehicle's specifications (e.g., Cylinders, Weight, Horsepower, etc.) and the application will instantly predict its equivalent Kilometers Per Liter (KMPL) using your trained model in the backend!
+```
+http://127.0.0.1:8000/
+```
+
+---
+
+## 📸 Output Screenshots
+* Home Page UI
+  <img width="1919" height="974" alt="image" src="https://github.com/user-attachments/assets/b83754c8-dc66-47cd-b8b8-2ac5399b02e7" />
+
+* Prediction Result
+<img width="1918" height="954" alt="image" src="https://github.com/user-attachments/assets/4897ed96-6407-4935-aeec-f43124e8acd3" />
+
+---
+
+## 📈 Model Details
+
+* Algorithm: **Random Forest Regressor**
+* Target: **KMPL (Kilometers Per Liter)**
+* Input Features:
+
+  * Cylinders
+  * Displacement
+  * Horsepower
+  * Weight
+  * Acceleration
+  * Model Year
+  * Origin
+
+---
+
+## 🚀 Future Improvements
+
+* Deploy on cloud (Render / Railway)
+* Add user authentication
+* Improve model accuracy
+* Add more datasets
+
+---
+
+## 👨‍💻 Author
+
+**Harshit Jariwala**
+MCA Student | Aspiring Software Engineer
+
+🔗 GitHub: https://github.com/harshi0958
+
+---
+
+## ⭐ Conclusion
+
+This project showcases the integration of **Machine Learning + Web Development**, making it a complete real-world application.
+
+If you like this project, give it a ⭐ on GitHub!
