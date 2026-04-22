@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Mileage Predictor | AI Driven Insights</title>
+    <meta name="description" content="Predict your car's mileage (kmpl) based on advanced machine learning algorithms.">
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a; /* Sleek dark blue/slate */
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #8b5cf6; /* Vibrant violet */
+            --primary-hover: #7c3aed;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8; /* Light blue accent */
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.15) 0px, transparent 50%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: floatIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes floatIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-main), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+        }
+
+        input::placeholder {
+            color: rgba(148, 163, 184, 0.5);
+        }
+
+        select option {
+            background: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        button {
+            margin-top: 1rem;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .result-card {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .result-card h3 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .result-card .value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        
+        .result-card .unit {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        @media (max-width: 640px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Mileage Predictor</h1>
+        <p class="subtitle">Enter your car specs to estimate kmpl</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="cylinders">Cylinders</label>
+                    <select name="cylinders" id="cylinders" required>
+                        <option value="4">4 Cylinders</option>
+                        <option value="6">6 Cylinders</option>
+                        <option value="8">8 Cylinders</option>
+                        <option value="3">3 Cylinders</option>
+                        <option value="5">5 Cylinders</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="displacement">Displacement (cu in)</label>
+                    <input type="number" step="0.1" name="displacement" id="displacement" placeholder="e.g. 150" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="horsepower">Horsepower</label>
+                    <input type="number" step="1" name="horsepower" id="horsepower" placeholder="e.g. 120" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="weight">Weight (lbs)</label>
+                    <input type="number" step="1" name="weight" id="weight" placeholder="e.g. 3000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="acceleration">Acceleration (0-60)</label>
+                    <input type="number" step="0.1" name="acceleration" id="acceleration" placeholder="e.g. 15.5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="model_year">Model Year</label>
+                    <input type="number" name="model_year" id="model_year" placeholder="e.g. 80" min="70" max="82" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="origin">Origin</label>
+                    <select name="origin" id="origin" required>
+                        <option value="1">American (1)</option>
+                        <option value="2">European (2)</option>
+                        <option value="3">Japanese (3)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit">Predict Mileage</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result-card" id="resultCard">
+                <h3>Estimated Efficiency</h3>
+                <div class="value">
+                    {{ prediction }}
+                    <span class="unit">kmpl</span>
+                </div>
+            </div>
+            <script>
+                // Scroll to result smoothly
+                document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'end' });
+            </script>
+        {% endif %}
+    </div>
+
+</body>
+</html>
